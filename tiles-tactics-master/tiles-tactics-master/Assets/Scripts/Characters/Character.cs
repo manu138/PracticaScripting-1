@@ -31,13 +31,13 @@ namespace Characters
 
             grid = Tilemap.grid;
             PathFind.Point _from = new PathFind.Point((int)tile.x,(int) tile.y);
-            PathFind.Point _to = new PathFind.Point(2, 7);
+            PathFind.Point _to = new PathFind.Point(6, 6);
           
             List<PathFind.Point> path = PathFind.Pathfinding.FindPath(grid, _from, _to);
             
             List<Vector2> lp = path.ConvertAll<Vector2>(MakeVector);
 
-            Debug.Log(path[0].x);
+
 
 
             movement.Move (lp);
