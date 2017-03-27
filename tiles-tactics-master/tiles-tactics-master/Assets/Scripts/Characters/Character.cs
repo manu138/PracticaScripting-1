@@ -13,8 +13,8 @@ namespace Characters
 
         public void Start()
         {
+            Tilemap.grid = this.grid;
 
-         
         }
 
         private void Awake ()
@@ -25,17 +25,19 @@ namespace Characters
         {
             return new Vector2(p.x, p.y);
         }
-        public void MoveTo (Vector2 tile)
+        public void MoveTo(Vector2 tile)
         {
             //TODO: pathfinding
 
-            Tilemap.grid = this.grid;
-            PathFind.Point _from = new PathFind.Point(1, 1);
+            
+            PathFind.Point _from = new PathFind.Point((int)tile.x,(int) tile.y);
             PathFind.Point _to = new PathFind.Point(7, 7);
-            List<PathFind.Point> path = PathFind.Pathfinding.FindPath(grid, _from, _to);
-            List<Vector2> lp = path.ConvertAll<Vector2>(MakeVector);
           
+            List<PathFind.Point> path = PathFind.Pathfinding.FindPath(grid, _from, _to);
+            
+            List<Vector2> lp = path.ConvertAll<Vector2>(MakeVector);
 
+            Debug.Log(path[0].x);
 
 
             movement.Move (lp);
