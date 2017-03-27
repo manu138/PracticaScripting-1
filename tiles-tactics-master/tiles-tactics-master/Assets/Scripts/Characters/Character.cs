@@ -13,7 +13,7 @@ namespace Characters
 
         public void Start()
         {
-            Tilemap.grid = this.grid;
+     
 
         }
 
@@ -29,9 +29,9 @@ namespace Characters
         {
             //TODO: pathfinding
 
-            
+            grid = Tilemap.grid;
             PathFind.Point _from = new PathFind.Point((int)tile.x,(int) tile.y);
-            PathFind.Point _to = new PathFind.Point(7, 7);
+            PathFind.Point _to = new PathFind.Point(2, 7);
           
             List<PathFind.Point> path = PathFind.Pathfinding.FindPath(grid, _from, _to);
             

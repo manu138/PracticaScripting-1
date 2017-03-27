@@ -21,6 +21,7 @@ namespace PathFind
         */
         public Grid(int width, int height, float[,] tiles_costs)
         {
+           
             gridSizeX = width;
             gridSizeY = height;
             nodes = new Node[width, height];

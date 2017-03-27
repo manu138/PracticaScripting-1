@@ -19,25 +19,25 @@ namespace Map
             {
                 for (int j = 1; j < height; j++)
                 {
-                    tilesmap[i, j] = 1;
+                    tilesmap[i, j] = 1.0f;
                 }
             }
             for (int i = 0; i < width; i++)
             {
                 
-                    tilesmap[0, i] = 0;
+                    tilesmap[0, i] = 0.0f;
                 
             }
             for (int i = 0; i < height; i++)
             {
 
-                tilesmap[i, 0] = 0;
+                tilesmap[i, 0] = 0.0f;
 
             }
             for (int i = 0; i < height; i++)
             {
 
-                tilesmap[i, 7] = 0;
+                tilesmap[i, 7] = 0.0f;
 
             }
 
