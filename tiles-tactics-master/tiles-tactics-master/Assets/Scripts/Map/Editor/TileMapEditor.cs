@@ -7,27 +7,34 @@ namespace Map.Detail
     public class TileMapEditor: Editor
     {
         [SerializeField]
-        private Vector2 size = Vector2.one;
-        [SerializeField]
         private Tile prefab;
 
         public override void OnInspectorGUI ()
         {   
             serializedObject.Update ();
             DrawPropertiesExcluding (serializedObject, "tiles");
-            size = EditorGUILayout.Vector2Field ("Size", size);
             prefab = (Tile)EditorGUILayout.ObjectField ("Tile", prefab, typeof (Tile), false);
-            if (GUILayout.Button ("Generate"))
-                SetTileRows(Generate ());
+            if (GUILayout.Button("Generate"))
+            {
+                Clear();
+                SetTileRows(Generate());
+            }
             serializedObject.ApplyModifiedProperties();
+        }
+
+        private void Clear()
+        {
+            Transform transform = ((Tilemap)target).transform;
+            foreach (Transform child in transform)
+                DestroyImmediate(child.gameObject);
         }
 
         private TileRow[] Generate ()
         {
-            TileRow[] rows = new TileRow[(int)size.y];
+            TileRow[] rows = new TileRow[((Tilemap)target).height];
             float tileSize = serializedObject.FindProperty ("tileSize").floatValue;
             Transform parent = ((Tilemap)target).transform;
-            for (int y=0; y < size.y; y++)
+            for (int y=0; y < rows.Length; y++)
                 rows[y] = GenerateRow (y, tileSize, parent);
             return rows;
         }
@@ -35,14 +42,14 @@ namespace Map.Detail
         private void SetTileRows (TileRow[] tiles)
         {
             Tilemap map = (Tilemap)target;
-            map.tiles = tiles;
+            map.rows = tiles;
         }
 
         private TileRow GenerateRow (int y, float tileSize, Transform parent)
         {
             TileRow row = new TileRow ();
-            Tile[] tiles = new Tile[(int)size.x];
-            for (int x=0; x<size.x; x++)
+            Tile[] tiles = new Tile[((Tilemap)target).width];
+            for (int x=0; x<tiles.Length; x++)
                 tiles[x] = InstantiateTile (new Vector2 (x, y), tileSize, parent);
             row.tiles = tiles;
             return row;
