@@ -31,7 +31,7 @@ namespace Characters
 
             grid = Tilemap.grid;
             PathFind.Point _from = new PathFind.Point((int)tile.x,(int) tile.y);
-            PathFind.Point _to = new PathFind.Point(6, 6);
+            PathFind.Point _to = new PathFind.Point(3, 6);
           
             List<PathFind.Point> path = PathFind.Pathfinding.FindPath(grid, _from, _to);
             

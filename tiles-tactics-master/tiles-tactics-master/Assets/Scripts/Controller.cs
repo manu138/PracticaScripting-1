@@ -7,8 +7,11 @@ public class Controller: MonoBehaviour
     private Character character;
 
     private void Update ()
+
     {
+        Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 tile = new Vector2(pz.x, pz.y);
         if (Input.GetKeyDown (KeyCode.Space))
-            character.MoveTo (Vector2.zero);
+            character.MoveTo (tile);
     }
 }
