@@ -16,7 +16,7 @@ namespace Characters
         private Tilemap map;
         private List<Vector2> path;
         private int current;
-        private bool isMoving;
+        public bool isMoving;
         private Vector2 currentPosition;
 
         private void Awake ()
