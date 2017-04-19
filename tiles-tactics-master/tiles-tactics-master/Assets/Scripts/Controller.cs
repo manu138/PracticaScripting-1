@@ -5,18 +5,20 @@ using UnityEngine;
 
 public class Controller: MonoBehaviour
 {
+    public event Action OnFinished;
+
     [SerializeField]
     private int actionPoints = 10;
     private bool isExecuting;
     private Queue<Command> actions;
-
-    [SerializeField]
     private Character character;
-    public Action Onfinished;
- 
+    public int RemainingActionPoints
+    {
+        get; private set;
+    }
     public void start()
     {
-       
+        Reset();
     }
 
     private void Awake()
@@ -24,27 +26,7 @@ public class Controller: MonoBehaviour
         actions = new Queue<Command>();
         character = GetComponent<Character>();
     }
-    private void Update ()
-
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-           // TryAddAction(character.MoveTo(character.MousePos(),onFinished));
-
-
-
-            ExecuteActions();
-        }
-           
-           
-    }
-    public int CurrentActionPoints
-    {
-        get; private set;
-    }
-
-
-
+     
 
     private void Start()
     {
@@ -59,10 +41,10 @@ public class Controller: MonoBehaviour
 
     public bool TryAddAction(Command action)
     {
-        if (!isExecuting && CurrentActionPoints >= action.Cost)
+        if (!isExecuting && RemainingActionPoints >= action.Cost)
         {
             actions.Enqueue(action);
-            CurrentActionPoints -= action.Cost;
+            RemainingActionPoints -= action.Cost;
             return true;
         }
         else
@@ -84,6 +66,8 @@ public class Controller: MonoBehaviour
     private void Reset()
     {
         isExecuting = false;
-        CurrentActionPoints = actionPoints;
+        RemainingActionPoints = actionPoints;
+        if (OnFinished != null)
+            OnFinished();
     }
 }

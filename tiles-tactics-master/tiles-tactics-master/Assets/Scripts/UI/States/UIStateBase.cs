@@ -4,7 +4,7 @@ public abstract class UIStateBase
 {
     protected CommandViewController controlled;
 
-    public UIStateBase (CommandViewController controlled)
+    public UIStateBase(CommandViewController controlled)
     {
         this.controlled = controlled;
     }
@@ -19,10 +19,10 @@ public abstract class UIStateBase
 
     }
 
-    public virtual void OnMousePositionChanged (Vector3 mousePosition)
+    public virtual void OnMousePositionChanged(Vector3 mousePosition)
     {
 
     }
 
-    public abstract void OnClick (Vector3 mousePosition);
+    public abstract void OnClick(Vector3 mousePosition);
 }

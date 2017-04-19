@@ -14,7 +14,14 @@ public class CommandViewController : MonoBehaviour
 	private UIStateBase current;
     private Dictionary<ActionType, UIStateBase> states;
 
-	private void Awake ()
+    public int RemainingActionPoints
+    {
+        get
+        {
+            return controller.RemainingActionPoints;
+        }
+    }
+    private void Awake ()
 	{
 		states = new Dictionary<ActionType, UIStateBase> ();
 	}
@@ -27,12 +34,12 @@ public class CommandViewController : MonoBehaviour
 
 	private void Update ()
 	{
-		if (current == null) return;
-		Vector3 position = GetCurrentPosition ();
-		current.OnMousePositionChanged (position);
-		if (Input.GetMouseButtonDown (0))
-			current.OnClick (position);
-	}
+        if (current == null) return;
+        Vector3 position = GetCurrentPosition();
+        current.OnMousePositionChanged(position);
+        if (Input.GetMouseButtonDown(0))
+            current.OnClick(position);
+    }
 
     public void SetState(ActionType state)
     {
@@ -64,4 +71,9 @@ public class CommandViewController : MonoBehaviour
 		bool didHit = Physics.Raycast (ray, out hit);
 		return didHit? hit.point : character.transform.position; 
 	}
+    public void RunActions()
+    {
+        current = null;
+        controller.ExecuteActions();
+    }
 }

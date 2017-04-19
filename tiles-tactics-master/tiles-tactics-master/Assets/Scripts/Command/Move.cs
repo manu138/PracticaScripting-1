@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using Characters;
-public class Move : Command 
-{
-	private Vector2 position;
 
-    public Move(Vector2 position)
+public class Move : Command
+{
+    private Vector3 position;
+
+    public Move(Vector3 position)
     {
-		this.position = position;
+        this.position = position;
     }
 
     public override int Cost
@@ -19,6 +20,6 @@ public class Move : Command
 
     public override void Execute(Character character)
     {
-        character.Move (position, OnFinished);
+        character.Move(position, OnFinished);
     }
 }
