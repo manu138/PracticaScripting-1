@@ -5,6 +5,7 @@ public class Move : Command
 {
     private Vector3 position;
 
+
     public Move(Vector3 position)
     {
         this.position = position;
@@ -20,6 +21,6 @@ public class Move : Command
 
     public override void Execute(Character character)
     {
-        character.Move(position, OnFinished);
+        character.Move(new Vector2(0,0), OnFinished);
     }
 }

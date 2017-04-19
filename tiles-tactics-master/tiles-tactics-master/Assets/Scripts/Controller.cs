@@ -11,20 +11,17 @@ public class Controller: MonoBehaviour
     private int actionPoints = 10;
     private bool isExecuting;
     private Queue<Command> actions;
-    private Character character;
+    public Character character;
     public int RemainingActionPoints
     {
         get; private set;
     }
-    public void start()
-    {
-        Reset();
-    }
+  
 
     private void Awake()
     {
         actions = new Queue<Command>();
-        character = GetComponent<Character>();
+        
     }
      
 

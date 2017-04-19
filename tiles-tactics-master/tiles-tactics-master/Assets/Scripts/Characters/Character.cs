@@ -4,7 +4,6 @@ using Map;
 using System;
 using PathFind;
 using System.Collections;
-using Characters;
 
 namespace Characters
 {
