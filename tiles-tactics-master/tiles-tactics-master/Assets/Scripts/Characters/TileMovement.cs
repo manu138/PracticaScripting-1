@@ -33,6 +33,7 @@ namespace Characters
         public void MoveCurrentPath ()
         {
             isMoving = true;
+            //verificarsi el path esta vacio devuelvase
             transform.position = path[current];
         }
 

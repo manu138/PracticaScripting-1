@@ -16,7 +16,10 @@ namespace Characters
         private Vector3 mousePos;
         private TileMovement movement;
         public Tilemap tileMap;
-      
+        public void Update()
+        {
+            
+        }
         private void Awake ()
         {
             movement = GetComponent<TileMovement> ();

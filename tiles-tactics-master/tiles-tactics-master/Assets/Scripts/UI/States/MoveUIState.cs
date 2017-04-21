@@ -1,4 +1,5 @@
 using UnityEngine;
+using Characters;
 
 public class MoveUIState : UIStateBase
 {
@@ -6,6 +7,7 @@ public class MoveUIState : UIStateBase
     {
 
     }
+
 
     public override void OnMousePositionChanged(Vector3 mousePosition)
     {
