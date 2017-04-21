@@ -8,6 +8,8 @@ namespace Map
         [SerializeField]
         private TerrainType terrain;
         public Character Character { get; set; }
+        public Renderer rend;
+  
         public float Cost
         {
             get
@@ -16,13 +18,26 @@ namespace Map
                 return 1f;
             }
         }
-
+        private void Start()
+        {
+            rend = GetComponent<Renderer>();
+            
+        }
         public bool IsOccupied
         {
             get
             {
                 return Character != null;
             }
+        }
+        private void OnMouseEnter()
+        {
+            rend.material.color = Color.blue;
+        }
+        void OnMouseExit()
+        {
+           
+            rend.material.color = Color.white;
         }
     }
 }

@@ -1,19 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using Characters;
-using System;
 
-public class Move : Command
+public class Attack : Command
 {
-    private Vector3 position;
-    
-
-
-    public Move(Vector3 position)
-    {
-        this.position = position;
-    }
-    
-
+    public Vector2 position;
     public override int Cost
     {
         get
@@ -21,20 +13,15 @@ public class Move : Command
             return 1;
         }
     }
-   
+  
     public override void Execute(Character character)
     {
-
-        
-
-        character.Move( OnFinished);
+        character.Attack(position,OnFinished);
     }
 
     public override void UnExecute(Character character)
     {
-        
+
     }
 
-   
 }
-

@@ -5,4 +5,5 @@ public enum ActionType
     Move = 2,
     Shoot = 3,
     Explode = 4,
+    Attack=5,
 }

@@ -36,12 +36,31 @@ namespace Map
 
         private float[,] BuildCosts()
         {
+            //costos 1 caminable 0 no caminable 2 duro de caminar
             int width = rows[0].tiles.Length;
             int height = rows.Length;
             float[,] costs = new float[height, width];
             for (int i = 0; i < height; i++)
                 for (int j = 0; j < width; j++)
+                {
                     costs[j, i] = 1f;
+                }
+
+            costs[7, 4] = 0.0f;
+           costs[4, 4] = 0.0f;
+            costs[3, 4] = 0.0f;
+            costs[5, 4] = 0.0f;
+            costs[6, 4] = 0.0f;
+            costs[7, 4] = 0.0f;
+            costs[3, 0] = 2.0f;
+            costs[2, 1] = 2.0f;
+            costs[3, 2] = 2.0f;
+            costs[3, 3] = 2.0f;
+            costs[2, 4] = 2.0f;
+            costs[2, 5] = 2.0f;
+            costs[3, 5] = 2.0f;
+            costs[3, 6] = 2.0f;
+            costs[2, 6] = 2.0f;
             return costs;
         }
 	}

@@ -12,6 +12,8 @@ public class Controller: MonoBehaviour
     private bool isExecuting;
     private Queue<Command> actions;
     public Character character;
+
+    
     public int RemainingActionPoints
     {
         get; private set;
@@ -66,5 +68,12 @@ public class Controller: MonoBehaviour
         RemainingActionPoints = actionPoints;
         if (OnFinished != null)
             OnFinished();
+    }
+    public void Undo()
+    {
+        actions.Clear();
+        Debug.Log("Actions clear");
+
+
     }
 }

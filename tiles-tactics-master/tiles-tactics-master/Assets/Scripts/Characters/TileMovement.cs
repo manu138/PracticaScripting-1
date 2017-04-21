@@ -28,17 +28,22 @@ namespace Characters
         {
             if (isMoving) return;
             this.path = path;
+            if (path == null)
+                return;
         }
 
         public void MoveCurrentPath ()
         {
             isMoving = true;
-            //verificarsi el path esta vacio devuelvase
+            if (path == null)
+                return;
             transform.position = path[current];
         }
 
         public void Move (List<Vector2> path)
         {
+            if (path == null)
+                return;
             SetPath (path);
             MoveCurrentPath ();
         }

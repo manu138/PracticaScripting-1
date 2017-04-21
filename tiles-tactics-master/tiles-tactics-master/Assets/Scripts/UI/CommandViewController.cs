@@ -30,7 +30,8 @@ public class CommandViewController : MonoBehaviour
 	{
 		SetState (ActionType.None);
 		states.Add (ActionType.Move, new MoveUIState (this));
-	}	
+        states.Add(ActionType.Attack, new AttackUIState(this));
+    }	
 
 	private void Update ()
 	{
@@ -75,5 +76,11 @@ public class CommandViewController : MonoBehaviour
     {
         current = null;
         controller.ExecuteActions();
+    }
+    public void Undo()
+    {
+        
+        controller.Undo();
+
     }
 }
