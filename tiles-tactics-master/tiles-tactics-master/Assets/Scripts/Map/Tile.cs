@@ -10,7 +10,7 @@ namespace Map
         public Character Character { get; set; }
         public Renderer rend;
        
-  
+
         public float Cost
         {
             get
@@ -24,6 +24,7 @@ namespace Map
             rend = GetComponent<Renderer>();
 
         }
+     
         public bool IsOccupied
         {
             get
@@ -33,7 +34,7 @@ namespace Map
         }
         private void OnMouseOver()
         {
-            
+           
             rend.material.color = Color.red;
         }
         void OnMouseExit()
