@@ -29,13 +29,19 @@ namespace Characters
 	private float shootForce = 2f;
 	[SerializeField]
 	private LayerMask enemies;
-	
+
+        public AudioClip shootSound;
+        private AudioSource source;
+        private float volLowRange = .5f;
+        private float volHighRange = 1.0f;
+
         public void Update()
         {
            
             if (Input.GetMouseButtonDown(1))
             {
-             
+                float vol = UnityEngine.Random.Range(volLowRange, volHighRange);
+                source.PlayOneShot(shootSound, vol);
                 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                targetPosition = new Vector2(Mathf.Abs(Mathf.Floor(mousePos.x)),Mathf.Abs(Mathf.Floor( mousePos.y)));
                 Debug.Log(targetPosition);
@@ -44,6 +50,7 @@ namespace Characters
          }   
             private void Awake ()
         {
+            source = GetComponent<AudioSource>();
             movement = GetComponent<TileMovement> ();
             
         }
