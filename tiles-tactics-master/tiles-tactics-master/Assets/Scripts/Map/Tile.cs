@@ -9,6 +9,7 @@ namespace Map
         private TerrainType terrain;
         public Character Character { get; set; }
         public Renderer rend;
+       
   
         public float Cost
         {
@@ -21,7 +22,7 @@ namespace Map
         private void Start()
         {
             rend = GetComponent<Renderer>();
-            
+
         }
         public bool IsOccupied
         {
@@ -30,14 +31,14 @@ namespace Map
                 return Character != null;
             }
         }
-        private void OnMouseEnter()
+        private void OnMouseOver()
         {
-            rend.material.color = new Color(0, 1, 0, 1);
+            
+            rend.material.color = Color.red;
         }
         void OnMouseExit()
         {
-           
-            rend.material.color = new Color(0, 1, 0, 0);
+            rend.material.color = Color.white;
         }
     }
 }
