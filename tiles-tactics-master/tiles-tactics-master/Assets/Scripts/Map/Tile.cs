@@ -32,12 +32,12 @@ namespace Map
         }
         private void OnMouseEnter()
         {
-            rend.material.color = Color.blue;
+            rend.material.color = new Color(0, 1, 0, 1);
         }
         void OnMouseExit()
         {
            
-            rend.material.color = Color.white;
+            rend.material.color = new Color(0, 1, 0, 0);
         }
     }
 }
