@@ -3,11 +3,12 @@ using Characters;
 
 public class MoveUIState : UIStateBase
 {
+  
     public MoveUIState(CommandViewController controlled) : base(controlled)
     {
 
     }
-
+   
 
     public override void OnMousePositionChanged(Vector3 mousePosition)
     {

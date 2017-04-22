@@ -14,6 +14,10 @@ public class CommandViewController : MonoBehaviour
 	private UIStateBase current;
     private Dictionary<ActionType, UIStateBase> states;
 
+    public AudioClip shootSound;
+    private AudioSource source;
+    private float volLowRange = .5f;
+    private float volHighRange = 1.0f;
     public int RemainingActionPoints
     {
         get
@@ -23,7 +27,8 @@ public class CommandViewController : MonoBehaviour
     }
     private void Awake ()
 	{
-		states = new Dictionary<ActionType, UIStateBase> ();
+        source = GetComponent<AudioSource>();
+        states = new Dictionary<ActionType, UIStateBase> ();
 	}
 
 	private void Start ()
@@ -39,7 +44,11 @@ public class CommandViewController : MonoBehaviour
         Vector3 position = GetCurrentPosition();
         current.OnMousePositionChanged(position);
         if (Input.GetMouseButtonDown(0))
+        {
             current.OnClick(position);
+             float vol = UnityEngine.Random.Range (volLowRange, volHighRange);
+            source.PlayOneShot(shootSound, vol);
+        }
     }
 
     public void SetState(ActionType state)
