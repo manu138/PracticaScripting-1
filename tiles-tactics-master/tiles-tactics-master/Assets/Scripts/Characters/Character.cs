@@ -78,19 +78,24 @@ namespace Characters
         }
         public void Attack(Vector2 tilePosition, Action onFinished)
         {
-            RaycastHit hit;
-            Vector3 direction = new Vector3();
-            Vector3 startPosition = transform.position + direction * (minRange - shootRadius - 0.01f);
+          
+            Vector2 direction = new Vector2();
+            Vector2 pos = new Vector2(transform.position.x, transform.position.y);
+            Vector2 startPosition = pos + direction * (minRange - shootRadius - 0.01f);
             float raycastDistance = maxRange - minRange;
-            if (Physics.SphereCast(transform.position, shootRadius, direction, out hit, raycastDistance, enemies))
+            RaycastHit2D hitResult = Physics2D.CircleCast(transform.position, shootRadius, direction,enemies);
+            if(hitResult.rigidbody!=null)
             {
+                Vector2 hitdirection = new Vector2();
+                hitdirection = (hitResult.point - startPosition).normalized;
+                float multiplier = ((1f - hitResult.distance / raycastDistance) * shootForce);
+                Vector2 force = hitdirection * multiplier;
+              
+                hitResult.rigidbody.AddForce(force);
                 Debug.Log("Hit");
-                Vector3 hitDirection = (hit.point - startPosition).normalized;
-                hitDirection.y = 0f;
-                float multiplier = ((1f - hit.distance / raycastDistance) * shootForce);
-                Vector3 force = hitDirection * multiplier;
-                hit.rigidbody.AddForce(force);
             }
+               
+               
             Debug.Log("attack");
             StartCoroutine(WaitForMoveCompleted(onFinished));
         }
